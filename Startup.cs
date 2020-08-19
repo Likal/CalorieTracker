@@ -9,6 +9,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
+using CalorieTracker.DAL;
+using CalorieTracker.Models;
+
+
 namespace CalorieTracker
 {
     public class Startup
@@ -24,6 +28,12 @@ namespace CalorieTracker
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            string connectionString = "";
+            services.AddDbContext<FoodItem>(options => options.UseNpgsql(connectionString));
+
+            services.AddScoped<IStoreFoodItem, EFFoodItemStorage>();
+            services.AddScoped<IStoreDailyFoodIntake, EFDailyFoodIntakeStorage>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

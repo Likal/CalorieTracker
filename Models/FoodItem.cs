@@ -22,7 +22,7 @@ namespace CalorieTracker.Models
 
         public bool IsDeleted { get; set; }
 
-        public List<DailyFoodIntake> DailyFoodIntakes { get; set;}
+        public List<FoodItem> FoodItems { get; set;}
 
     }
 }
